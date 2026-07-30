@@ -12,6 +12,11 @@ services:
     volumes:
       - /app/node_modules
       - .:/app
+    depends_on:
+      - redis
+
+  redis:
+    image: 'redis'
 
   tests:
     stdin_open: true
