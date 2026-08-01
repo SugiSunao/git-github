@@ -5,21 +5,21 @@ import './App.css';
 function App() {
   const [visits, setVisits] = useState(0);
 
-  useEffect(() => {
-    fetch('http://localhost:8081/visits')
-      .then((res) => res.text())
-      .then((data) => setVisits(data))
-      .catch((err) => console.log(err));
-  }, []);
+useEffect(() => {
+  fetch('http://localhost:8081/')
+    .then(res => res.text())
+    .then(data => setVisits(data))
+    .catch(err => console.log(err));
+}, []);
 
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>React Project Team A</p>
-        <p>members :Sean & Aldrick</p>
+        <p>Members: Sean & Aldrick</p>
         <p style={{ fontSize: '28px', color: '#61dafb', fontWeight: 'bold' }}>
-          Number of visits: {visits}
+           {visits}
         </p>
         <a
           className="App-link"
