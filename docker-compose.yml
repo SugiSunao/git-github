@@ -13,25 +13,22 @@ services:
       - /app/node_modules
       - .:/app
     depends_on:
-      - redis
-      - api
-
-  api:
+      - redis-server
+      - visits
+  visits:
     build:
-      context: .
-      dockerfile: Dockerfile.dev
-    command: ["node", "server.js"]
+      context: ./visits
     ports:
       - '8081:8081'
+    environment:
+      - REDIS_HOST=redis-server
     volumes:
       - /app/node_modules
-      - .:/app
+      - ./visits:/app
     depends_on:
-      - redis
-
-  redis:
+      - redis-server
+  redis-server:
     image: 'redis'
-
   tests:
     stdin_open: true
     environment:

@@ -1,0 +1,23 @@
+version: '3'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '8080:80'
+    depends_on:
+      - visits
+
+  redis-server:
+    image: 'redis'
+
+  visits:
+    build:
+      context: ./visits
+    ports:
+      - '8081:8081'
+    environment:
+      - REDIS_HOST=redis-server
+    depends_on:
+      - redis-server
